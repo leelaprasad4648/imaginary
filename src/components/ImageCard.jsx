@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { addComment, toggleLike } from '../actions';
+import imagePropTypes from './imagePropTypes';
 
 const ImageCard = (props) => {
   const {
@@ -44,8 +46,9 @@ const ImageCard = (props) => {
           <button className="image-button" type="button" onClick={() => onAddComment()}>Post</button>
         </div>
         <div className="image-card-comments-container">
-          {comments.map((postComment) => (
-            <div key={id} className="image-card-comment">
+          {comments.map((postComment, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <div key={`${id}-comment-${index}`} className="image-card-comment">
               {postComment}
             </div>
           ))}
@@ -54,5 +57,11 @@ const ImageCard = (props) => {
     </div>
   );
 };
+
+ImageCard.propTypes = {
+  imageDetails: imagePropTypes.isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+export { ImageCard };
 
 export default connect()(ImageCard);

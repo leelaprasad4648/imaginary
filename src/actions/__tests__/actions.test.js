@@ -6,7 +6,7 @@ import {
 import {
   ADD_PICS, TOGGLE_LIKE, ADD_COMMENT, MOST_COMMENTED, MOST_LIKED,
 } from '../actionTypes';
-import { apiTestData } from '../../testAPIData';
+import { apiTestData } from '../../__mocks__/testAPIData';
 
 const mockStore = configureMockStore([thunk]);
 

@@ -3,7 +3,7 @@ import {
   ADD_PICS, TOGGLE_LIKE, ADD_COMMENT, MOST_LIKED,
   MOST_COMMENTED,
 } from '../../actions/actionTypes';
-import { apiTestData } from '../../testAPIData';
+import { apiTestData } from '../../__mocks__/testAPIData';
 
 describe('imagesReducer', () => {
   const initialState = {

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { addPics, sortMostLiked, sortMostCommented } from '../actions';
 import ImageCard from './ImageCard';
+import imagePropTypes from './imagePropTypes';
 import './index.scss';
 
 const App = (props) => {
@@ -58,12 +60,13 @@ const App = (props) => {
       <div className="images-container">
         {getPictures().map((pic) => (
           <ImageCard
+            className="image-cards"
             key={pic.id}
             imageDetails={pic}
           />
         ))}
-        {(!picsLoading && getPictures().length === 0) && (<div>No matches found</div>)}
-        {picsLoading && (<div>Loading...</div>)}
+        {(!picsLoading && getPictures().length === 0) && (<div className="no-matches">No matches found</div>)}
+        {picsLoading && (<div className="loading">Loading...</div>)}
       </div>
     </div>
   );
@@ -75,5 +78,12 @@ const mapStateToProps = (state) => {
     pics,
   });
 };
+
+App.propTypes = {
+  pics: PropTypes.arrayOf(imagePropTypes).isRequired,
+  dispatch: PropTypes.func.isRequired,
+};
+
+export { App };
 
 export default connect(mapStateToProps, null)(App);
